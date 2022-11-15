@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>PFE Master: Détéction plagiat cross-lingue</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css')}}" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='style5.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='page_principale.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap-toggle.min.css')}}">
+
+    <!-- Font Awesome JS -->
+    <script defer src="{{ url_for('static',filename='solid.js')}}" crossorigin="anonymous"></script>
+    <script defer src="{{ url_for('static',filename='fontawesome.js')}}" crossorigin="anonymous"></script>
+        
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="{{ url_for('static',filename='jquery-3.3.1.slim.min.js')}}" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="{{ url_for('static',filename='popper.min.js')}}" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static',filename='bootstrap.min.js')}}" crossorigin="anonymous"></script>
+
+  <script src="{{ url_for('static',filename='mCustomScrollbar.concat.min.js')}}"></script>
+
+  <script src="{{ url_for('static',filename='bootstrap-toggle.min.js')}}"></script>
+
+</head>
+
+<body>
+
+         <!--nvbare top
+            navbar navbar-expand-md nvbar-light bg-light sticky-top 
+       -->   
+    <nav class=" navbar navbar-expand-lg  navbar-light  fixed-top">
+    <div class="container-fluid">
+        <a href="https://www.cerist.dz/index.php/en/" class="navbar-brand"><img src="{{ url_for('static',filename='logo.png')}}" 
+             alt="logo" width="80" height="40"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" 
+                data-target="#navbarResponsive">
+        <span class="navbar-toggle-icon"></span>
+        </button>
+        <div class="cillapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a href="" class="nav-link">Home</a>
+                </li> 
+                <li class="nav-item active">
+                    <a href="index6.html" class="nav-link">test</a>
+                </li> 
+                <li class="nav-item active">
+                    <a href="index5.html" class="nav-link">training</a>
+                </li> 
+            </ul>
+        </div>
+    </div>
+    </nav>
+    
+
+
+
+
+
+      <!--image slide courasel-->
+    <div id="myCarousel" class="carousel slide carousel-fade" 
+        data-ride="carousel">   
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"> </li>
+                <li data-target="#myCarousel" data-slide-to="2"> </li>
+                <li data-target="#myCarousel" data-slide-to="3"> </li>
+                    
+            </ol>      
+            
+            <div class="  carousel-inner">   
+                        <div class="carousel-item active" data-interval="150">
+                            <div class="overlay-image d-block w-100" style="background-image:url(./static/img1.ipg ;"></div>
+                            <div class="container">
+                                <h1>Logiciel Anti-Plagiat</h1>
+                                
+                                
+                            </div>
+                        </div>
+                        <div class="carousel-item " data-interval="100">
+                            <div class="overlay-image" style="background-image:url(./static/img2.jpg) ;"></div>
+                            <div class="container">
+                                <h1>Le plagiat</h1>
+                                <p>Il s'agit de présenter un travail ou des idées de quelqu’un d’autre comme étant
+                                    les nôtre, avec ou sans agrément, en les ajoutant dans notre travaille sans connaître
+                                 les détails.</p>
+                                <!--<a href="#" class="btn btn-lg btn-primary">
+                                plus..
+                                </a>-->
+                            </div>
+                        </div>
+                        <div class="carousel-item " data-interval="100">
+                            <div class="overlay-image" style="background-image:url(./static/img3.jpg) ;"></div>
+                            <div class="container">
+                                <h1>Le plagiat</h1>
+                                <p>Cette définitions reporte sur tous les documents qu'ils soient 
+                                    imprimés, manuscrits ou électroniques.
+                                </p>
+                                <!--<a href="#" class="btn btn-lg btn-primary">
+                                plus..
+                                </a>-->
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item " data-interval="100">
+                            <div class="overlay-image" style="background-image:url(./static/img1.jpg) ;"></div>
+                            <div class="container">
+                                <h1>Le plagiat</h1>
+                                <p>Peut être intentionnel ou pas mais ça reste quand même
+                                    une faute disciplinaire.
+                                </p>
+                                <!--<a href="#" class="btn btn-lg btn-primary">
+                                plus..
+                                </a>-->
+                            </div>
+                        </div>
+                        <!--
+                            <div class="carousel-item "data-interval="500">
+                            <div class="overlay-image" style="background-image:url(./static/img3.jpg) ;"></div>
+                            <div class="container">
+                                <h1>Plagiarism</h1>
+                                <p>Plagiat is not good think</p>
+                                <a href="#" class="btn btn-lg btn-primary">
+                                plus..
+                                </a>
+                            </div>
+                        </div>
+                        --> 
+            </div>
+            <a href="#myCarousel" class="carousel-control-prev" 
+                role="button" data-slide="prev">
+                <span class="sr-only">Previous</span>
+                <span class="carousel-control-prev-icon"
+                aria-hidden="true"></span>
+            </a>
+            <a href="#myCarousel" class="carousel-control-next" 
+                role="button" data-slide="next">
+                <span class="sr-only">Previous</span>
+                <span class="carousel-control-next-icon"
+                aria-hidden="true"></span>
+            </a>
+        
+        </div> 
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</body>
+
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>PFE Master: Testez les requetes </title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css')}}" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='style5.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='page_principale.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap-toggle.min.css')}}">
+
+    <!-- Font Awesome JS -->
+    <script defer src="{{ url_for('static',filename='solid.js')}}" crossorigin="anonymous"></script>
+    <script defer src="{{ url_for('static',filename='fontawesome.js')}}" crossorigin="anonymous"></script>
+        
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="{{ url_for('static',filename='jquery-3.3.1.slim.min.js')}}" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="{{ url_for('static',filename='popper.min.js')}}" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static',filename='bootstrap.min.js')}}" crossorigin="anonymous"></script>
+
+  <script src="{{ url_for('static',filename='mCustomScrollbar.concat.min.js')}}"></script>
+
+  <script src="{{ url_for('static',filename='bootstrap-toggle.min.js')}}"></script>
+
+
+
+
+</head>
+
+
+{% if not display_first %}
+
+<body onload="toggle_test_result()" style="background: url('/static/img_bg_form.jpg') no-repeat center center fixed">
+  {% else %}
+
+  <body style="background: url('/static/img_bg_form.jpg') no-repeat center center fixed">
+    {% endif %}
+    <form action="submit_test" method="post">
+      <div class="wrapper" id="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar" class="sticky-top" style="background-color:darkslategrey; overflow-y:auto;">
+          <div class="sidebar-header" style="background-color: MediumAquaMarine; color:white">
+            <h3
+              style="text-align:center; font-family: 'Comic Sans MS', cursive, sans-serif; font-size: 30px; font-weight: 700;">
+              Menu</h3>
+          </div>
+
+          {% if not custom_nn_model %}
+          <ul class="list-unstyled components">
+            <li>
+              <a href="#Wor2vec" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                style="background-color: darkslategray;">
+                <i class="fas fa-code-branch"></i>
+                Modèle deep learning
+              </a>
+
+              <ul class="collapse list-unstyled" id="Wor2vec">
+                <li>
+                  <a href="#lstm_sub" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                    style="background-color:rgb(31, 53, 53);">
+                    <i class="fa fa-angle-double-right"></i>
+                    LSTM
+
+                  </a>
+                </li>
+
+                <ul class="collapse list-unstyled" id="lstm_sub" style="background-color:rgb(28, 27, 31);">
+                  <div class="btn-group-vertical" role="group" aria-label="Basic example" style="padding-left: 20px;">
+                    
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="LSTM_1" checked > Modèle Simple 1</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="LSTM_2" checked > Modèle Simple 2</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="LSTM_3" checked > Modèle Simple 3</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="LSTM_4" checked > Modèle Simple 4</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="LSTM_B1" checked > Modèle Bidirectionel 1</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="LSTM_B2" checked > Modèle Bidirectionel 2</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="LSTM_B3" checked > Modèle Bidirectionel 3</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="LSTM_B4" checked > Modèle Bidirectionel 4</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    
+                  </div>
+                </ul>
+                <li>
+                  <a href="#fru_sub" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                    style="background-color:rgb(31, 53, 53);">
+                    <i class="fa fa-angle-double-right"></i>
+                    GRU
+                  </a>
+                </li>
+                <ul class="collapse list-unstyled" id="fru_sub" style="background-color:rgb(28, 27, 31);">
+                  <div class="btn-group-vertical" role="group" aria-label="Basic example" style="padding-left: 20px;">
+                    
+                    
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="GRU_1" checked > Modèle Simple 1</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="GRU_2" checked > Modèle Simple 2</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="GRU_3" checked > Modèle Simple 3</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="GRU_B1" checked > Modèle Bidirectionel 1</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="GRU_B2" checked > Modèle Bidirectionel 2</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="GRU_B3" checked > Modèle Bidirectionel 3</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="GRU_B4" checked > Modèle Bidirectionel 4</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+                    <label class="block"  data-toggle="tooltip" data-placement="right" data-html="true" title="<ul> <li><b>Stucture Word2Vec:</b> SkipGram-RandomSuffle</li> <li><b>Nombre Des Couches:</b> 2 Couches [340, 340]</li> <li><b>Nombre des epochs: </b>300 epochs</li> <li><b>Taille du batch:</b> 1</li> <li><b>Taux de dropout: </b> 0%</li> <li><b>Précision du modèle: </b>25%</li> <li><b>F1 Score:</b> 44%</li></ul>">
+                      <input type="radio" name="radgroup_pre_model" value="GRU_B5" checked > Modèle Bidirectionel 5</input> <i class="fa fa-info-circle 48px" style="padding-left:5px; font-size:20px; color:gray"></i> 
+                    </label>
+
+                  </div>
+                </ul>
+                <li>
+                  <a href="#bert_sub" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                    style="background-color:rgb(31, 53, 53);">
+                    <i class="fa fa-angle-double-right"></i>
+                    BERT
+                  </a>
+                </li>
+                <ul class="collapse list-unstyled" id="bert_sub" style="background-color:rgb(28, 27, 31);">
+                  <div class="btn-group-vertical" role="group" aria-label="Basic example" style="padding-left: 20px;">
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="BERT_A">
+                      Modèle 1</input></label>
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="BERT_B">
+                      Modèle 2</input></label>
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="BERT_C">
+                      Modèle 3</input></label>
+                  </div>
+                </ul>
+              </ul>
+            </li>
+          </ul>
+
+          {% else %}
+
+          <ul class="list-unstyled components">
+            <p style="background-color: seagreen; text-align: center;">Configuration</p>
+            <li>
+              <a href="#Wor2vec" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                style="background-color: darkslategray;">
+                <i class="fas fa-code-branch"></i>
+                Modèle deep learning
+              </a>
+
+              <ul class="collapse list-unstyled" id="Wor2vec">
+                <li>
+                  <a href="#lstm_sub" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                    style="background-color:rgb(31, 53, 53);">
+                    <i class="fa fa-angle-double-right"></i>
+                    LSTM
+
+                  </a>
+                </li>
+
+                <ul class="collapse list-unstyled" id="lstm_sub" style="background-color:rgb(28, 27, 31);">
+                  <div class="btn-group-vertical" role="group" aria-label="Basic example" style="padding-left: 20px;">
+                    
+
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="LSTM_A" disabled>
+                      Modèle 1</input></label>
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="LSTM_B" disabled>
+                      Modèle 2</input></label>
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="LSTM_C" disabled>
+                      Modèle 3 </input></label>
+                  </div>
+                </ul>
+                <li>
+                  <a href="#fru_sub" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                    style="background-color:rgb(31, 53, 53);">
+                    <i class="fa fa-angle-double-right"></i>
+                    GRU
+                  </a>
+                </li>
+                <ul class="collapse list-unstyled" id="fru_sub" style="background-color:rgb(28, 27, 31);">
+                  <div class="btn-group-vertical" role="group" aria-label="Basic example" style="padding-left: 20px;">
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="GRU_A" disabled>
+                      Modèle 1 </input></label>
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="GRU_B" disabled>
+                      Modèle 2</input></label>
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="cbow_C" disabled>
+                      Modèle 3</input></label>
+                  </div>
+                </ul>
+                <li>
+                  <a href="#bert_sub" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                    style="background-color:rgb(31, 53, 53);">
+                    <i class="fa fa-angle-double-right"></i>
+                    BERT
+                  </a>
+                </li>
+                <ul class="collapse list-unstyled" id="bert_sub" style="background-color:rgb(28, 27, 31);">
+                  <div class="btn-group-vertical" role="group" aria-label="Basic example" style="padding-left: 20px;">
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="BERT_A" disabled>
+                      Modèle 1</input></label>
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="BERT_B" disabled>
+                      Modèle 2</input></label>
+                    <label class="block"><input type="radio" name="radgroup_pre_model" value="BERT_C" disabled>
+                      Modèle 3</input></label>
+                  </div>
+                </ul>
+                <li>
+                  <a href="#custom_sub" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"
+                    style="background-color:rgb(31, 53, 53);">
+                    <i class="fa fa-angle-double-right"></i>
+                    Nouveu
+                  </a>
+                </li>
+                <ul class="collapse list-unstyled" id="custom_sub" style="background-color:rgb(28, 27, 31);">
+                  <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                    <div>
+                      <label class="block" style="padding-left: 20px;">
+                        <input type="radio" checked name="radgroup_pre_model" value="User_Model">
+                        Modèle Customisé par utilisateur
+                        </input>
+                      </label>
+                      <!-- Button trigger modal -->
+
+                      <div class="col text-center">
+                        <button type="button" class="btn btn-outline-success btn-sm"
+                          style="width: 80%; text-align: center;" data-toggle="modal" data-target="#exampleModal">
+                          Supprimer
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+              </ul>
+            </li>
+          </ul>
+
+          {% endif %}
+          <ul class="list-unstyled components">
+            <p style="background-color: seagreen; text-align: center;">Liens externs utiles</p>
+            </li>
+            <li>
+              <a href="#">Lien 1</a>
+            </li>
+            <li>
+              <a href="#">Lien 2</a>
+            </li>
+            <li>
+              <a href="#">Lien 3 </a>
+            </li>
+          </ul>
+
+          <ul class="list-unstyled CTAs">
+
+            <li>
+              <a href="#" class="download">Button 1</a>
+            </li>
+            <li>
+              <a href="#" class="article">Button 2</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button type="button" id="sidebarCollapse" class="navbar-btn">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+              data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <i class="fas fa-align-justify"></i>
+            </button>
+
+            <a href="https://www.cerist.dz/index.php/en/" class="navbar-brand"><img src="{{ url_for('static',filename='logo.png')}}"  alt="logo"
+                width="50"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              data-target="#navbarResponsive">
+              <span class="navbar-toggle-icon"></span>
+            </button>
+
+            <div class="cillapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a href="page_principale.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item active">
+                  <a href="index6.html" class="nav-link">test</a>
+                </li>
+                <li class="nav-item active">
+                  <a href="index5.html" class="nav-link">training</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <div class="card border-0 shadow my-5">
+            <div class="card-body p-5">
+
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div id="toggle_lang" name="toggle_lang">
+                  <label class="col-form-label" style="font-size:20px;">
+                    Input Language:
+
+                    <input id="checkbox_langue" onchange="check_langue()" type="checkbox" checked data-toggle="toggle"
+                      data-onstyle="success" data-offstyle="info" data-on="En" data-off="Ar" data-size="large"
+                      name="ch_lang">
+                  </label>
+                </div>
+                <label class="col-form-label" style="font-size:20px; padding-left: 20px;">
+                  Action:
+                  {% if not display_first %}
+                  <input type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="info"
+                    data-on="Selecting a test phrase" data-off="Viewing similarity score" data-size="large"
+                    id="toggle_1" onchange="toggle_test_result()">
+                  {% else %}
+                  <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="info"
+                    data-on="Selecting a test phrase" data-off="Viewing similarity score" data-size="large"
+                    id="toggle_1" onchange="toggle_test_result()">
+                  {% endif %}
+
+                </label>
+              </div>
+              <div class="container-fluid">
+                <div class="myforme form-group bg-light mt-3">
+                  <div class="form-group col-sm-12 justify-content-center">
+
+                    <div class="form-group col-sm-12 justify-content-center" style="display: none;"
+                      id="similarity_view">
+                      {% if phrase_choisi %}
+                      <label>La phrase sélectionné :{{phrase_choisi}}</label>
+                      <br>
+                      {% endif %}
+                      <label for="similaire_lines">most similaire phrases</label>
+                      <nav style="overflow:hidden; overflow-y:scroll;height:200px">
+                        <ul class="list-group">
+                          {% if res %}
+                          {% for elem in res %}
+                          <li
+                            class="list-group-item list-group-item-action list-group-item-light d-flex justify-content-between align-items-center">
+                            {{elem[0]}}
+                            <span class="badge bg-success rounded-pill" style="color: white;">{{elem[1]}}</span>
+                          </li>
+                          {% endfor %}
+                          {% endif %}
+
+                        </ul>
+                      </nav>
+                      <label for="event_log">Event log</label>
+                      <nav style="overflow:hidden; overflow-y:scroll;height:200px">
+                        <div id="mytxt" class="form-control " readonly id="event_log" name='event_log' contenteditable="false" style="min-height: 250px; background-color: black; color:white; font-family: consolas; text-align: left;">
+                          {% for elem in list_events_test %}
+                          {{ elem|safe}}
+                          {% endfor %}
+                       </div>
+                      </nav>
+                    </div>
+
+
+
+                    <div class="form-group col-sm-12 justify-content-center" id="test_view">
+                      <div class="form-group col-sm-12 justify-content-center" id="test_view">
+                        <div class="mb-3 mt-3" id="top_n">
+                          <label for="top_n" class="form-label"> Top n phrases result:
+                          </label>
+                          <input type="number" class="form-control" min=1 max=500 placeholder="Top n" id="top_n_result"
+                            name="top_n_result" value="10" required>
+                          <div class="valid-feedback">Valide.</div>
+                          <div class="invalid-feedback">Valeur invalide.</div>
+                        </div>
+                        <label for="event_log">Select a test phrase</label>
+                        <div id="test_ar_affiche" style="display:None">
+                          <select class="form-group col-sm-12 justify-content-center" name="test_choix_ar" size="8"
+                            aria-label="size 8 select example">
+                            <option value="{{test_ar[0]}}" selected>{{test_ar[0]}}</option>
+                            {% for line in range(1,test_ar|length) %}
+                            <option value=" {{test_ar[line]}}">{{test_ar[line]}}</option>
+                            {% endfor %}
+
+                          </select>
+                        </div>
+                        <div id="test_en_affiche">
+                          <select class="form-group col-sm-12 justify-content-center" name="test_choix_en" size="8"
+                            aria-label="size 8 select example">
+                            <option value=" {{test_en[0]}}" selected> {{test_en[0]}}</option>
+                            {% for line in range(1,test_en|length) %}
+                            <option value=" {{test_en[line]}}"> {{test_en[line]}}</option>
+                            {% endfor %}
+
+                          </select>
+                        </div>
+
+                      </div>
+
+                      <label for="event_log">Event log</label>
+                      <nav style="overflow:hidden; overflow-y:scroll;height:200px">
+                        <div id="mytxt" class="form-control " readonly id="event_log" name='event_log' contenteditable="false" style="min-height: 250px; background-color: black; color:white; font-family: consolas; text-align: left;">
+                          {% for elem in list_events_test %}
+                          {{ elem|safe}}
+                          {% endfor %}
+                       </div>
+                      </nav>
+                    </div>
+
+                  </div>
+                  <div class="row  btn-group-lg justify-content-center mt-3">
+                    <div class="col-sum-6">
+                      <button type="submit" class="btn btn-lg btn-success btn-block" id='submit' name='submit'
+                        onclick="overlayOn()">
+                        Tester
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+
+              <div id="overlay">
+                <div id="textwait">veuillez patienter</div>
+                <div id="loop"><i class="fa fa-spinner fa-spin" style="font-size:100px"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Attention</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Voulez vraiment supprimer votre modèle personalisé? <br>
+            Cette action ne peut pas être annulée!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger"><a href="index6.html">Oui</a></button>
+            <button type="button" class="btn btn-Secondary" data-dismiss="modal">Retourner</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Custom Scripts -->
+    <script type="text/javascript">
+      // J-Querry
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+
+      $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+          theme: "minimal"
+        });
+        $('#sidebarCollapse').on('click', function () {
+          $('#sidebar').toggleClass('active');
+          $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+          });
+        });
+      });
+
+      $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+          theme: "minimal"
+        });
+        $('#sidebarCollapse').on('click', function () {
+          $('#sidebar, #content').toggleClass('active');
+          $('.collapse.in').toggleClass('in');
+          $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+          $(this).toggleClass('active');
+        });
+      });
+
+      $(function () {
+        $(".dropdown-menu a").click(function () {
+          $(this).closest('.btn-group').find(".btn:first-child").text($(this).text());
+          $(this).closest('.btn-group').find(".btn:first-child").val($(this).text());
+        });
+      });
+      $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+      })
+
+      // Vanilla JS
+      function overlayOn() {
+        document.getElementById("overlay").style.display = "block";
+      }
+      function toggle_test_result() {
+        x = document.getElementById("toggle_1");
+        if (x.checked) {
+          document.getElementById("toggle_lang").style.display = "Block";
+          document.getElementById("test_view").style.display = "Block";;
+          document.getElementById("submit").style.display = "Block";
+          document.getElementById("similarity_view").style.display = "none";
+          x.checked = true;
+        } else {
+          document.getElementById("toggle_lang").style.display = "none";
+          document.getElementById("test_view").style.display = "none";
+          document.getElementById("submit").style.display = "none";
+          document.getElementById("similarity_view").style.display = "Block";
+          x.checked = false;
+        }
+      }
+
+      function update_lstm_units() {
+        document.getElementById("lstm_nbr_units_0").style.display = "none";
+        document.getElementById("lstm_nbr_units_1").style.display = "none";
+        document.getElementById("lstm_nbr_units_2").style.display = "none";
+        document.getElementById("lstm_nbr_units_3").style.display = "none";
+        document.getElementById("lstm_nbr_units_4").style.display = "none";
+        document.getElementById("lstm_nbr_units_5").style.display = "none";
+        var x = document.getElementById("nodesnumber_lstm").value;
+        if (x < 0 || x > 5)
+          return;
+        if (x > 0) {
+          document.getElementById("lstm_nbr_units_0").style.display = "Block";
+          document.getElementById("lstm_nbr_units_1").style.display = "Block";
+        }
+        if (x > 1)
+          document.getElementById("lstm_nbr_units_2").style.display = "Block";
+        if (x > 2)
+          document.getElementById("lstm_nbr_units_3").style.display = "Block";
+        if (x > 3)
+          document.getElementById("lstm_nbr_units_4").style.display = "Block";
+        if (x > 4)
+          document.getElementById("lstm_nbr_units_5").style.display = "Block";
+      }
+
+      function update_gru_units() {
+        document.getElementById("gru_nbr_units_0").style.display = "none";
+        document.getElementById("gru_nbr_units_1").style.display = "none";
+        document.getElementById("gru_nbr_units_2").style.display = "none";
+        document.getElementById("gru_nbr_units_3").style.display = "none";
+        document.getElementById("gru_nbr_units_4").style.display = "none";
+        document.getElementById("gru_nbr_units_5").style.display = "none";
+        var x = document.getElementById("nodesnumber_gru").value;
+        if (x < 0 || x > 5)
+          return;
+        if (x > 0) {
+          document.getElementById("gru_nbr_units_0").style.display = "Block";
+          document.getElementById("gru_nbr_units_1").style.display = "Block";
+        }
+        if (x > 1)
+          document.getElementById("gru_nbr_units_2").style.display = "Block";
+        if (x > 2)
+          document.getElementById("gru_nbr_units_3").style.display = "Block";
+        if (x > 3)
+          document.getElementById("gru_nbr_units_4").style.display = "Block";
+        if (x > 4)
+          document.getElementById("gru_nbr_units_5").style.display = "Block";
+      }
+
+      function hideShowElems(str) {
+        var x = document.getElementById("panel_LSTM");
+        var y = document.getElementById("panel_GRU");
+        var z = document.getElementById("panel_BERT");
+        if (str == 'BERT') {
+          x.style.display = "none";
+          y.style.display = "none";
+          z.style.display = "Block";
+        } else {
+          if (str == 'GRU') {
+            x.style.display = "none";
+            y.style.display = "Block";
+            z.style.display = "none";
+          } else {
+            x.style.display = "Block";
+            y.style.display = "none";
+            z.style.display = "none";
+          }
+        }
+      }
+      function check_langue() {
+        x = document.getElementById("checkbox_langue");
+        if (x.checked) {
+          document.getElementById("test_en_affiche").style.display = "Block";
+          document.getElementById("test_ar_affiche").style.display = "None";
+        } else {
+          document.getElementById("test_ar_affiche").style.display = "Block";
+          document.getElementById("test_en_affiche").style.display = "None";
+
+        }
+      }
+
+
+
+
+    </script>
+
+
+
+
+  </body>
+
+</html>

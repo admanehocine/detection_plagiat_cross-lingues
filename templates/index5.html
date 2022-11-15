@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>PFE Master: Créez votre propre modèle</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css')}}" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='style5.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='page_principale.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap-toggle.min.css')}}">
+
+    <!-- Font Awesome JS -->
+    <script defer src="{{ url_for('static',filename='solid.js')}}" crossorigin="anonymous"></script>
+    <script defer src="{{ url_for('static',filename='fontawesome.js')}}" crossorigin="anonymous"></script>
+        
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="{{ url_for('static',filename='jquery-3.3.1.slim.min.js')}}" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="{{ url_for('static',filename='popper.min.js')}}" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static',filename='bootstrap.min.js')}}" crossorigin="anonymous"></script>
+
+  <script src="{{ url_for('static',filename='mCustomScrollbar.concat.min.js')}}"></script>
+
+  <script src="{{ url_for('static',filename='bootstrap-toggle.min.js')}}"></script>
+
+
+</head>
+
+<body style="background: url('/static/img_bg_form.jpg') no-repeat center center fixed">
+
+    <form action='createNN' class="was-validated" method="POST">
+        <div class="wrapper" id="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar" class="sticky-top" style="background-color:darkslategrey;">
+                <div class="sidebar-header" style="background-color: MediumAquaMarine; color:white">
+                    <h3
+                        style="text-align:center; font-family: 'Comic Sans MS', cursive, sans-serif; font-size: 30px; font-weight: 700;">
+                        Menu</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <p style="background-color: seagreen; text-align: center;">Configuration</p>
+                    <li>
+                        <a href="#Wor2vec" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                            style="background-color: darkslategray;">
+                            <i class="fas fa-feather"></i>
+                            Word2Vec
+                        </a>
+                        <ul class="collapse list-unstyled" id="Wor2vec">
+                            <li>
+                                <a href="#skipgramsub" data-toggle="collapse" aria-expanded="false"
+                                    class="dropdown-toggle" style="background-color:rgb(31, 53, 53);">
+                                    <i class="fas fa-sitemap"></i>
+                                    SkipGram
+
+                                </a>
+                            </li>
+                            <ul class="collapse list-unstyled" id="skipgramsub"
+                                style="background-color:rgb(28, 27, 31);">
+                                <div class="btn-group-vertical we" role="group" aria-label="Basic example"
+                                    style="padding-left: 20px;">
+                                    <label class="block"><input class="radio_w2v" type="radio" name="radgroup"
+                                            value="SkipGram_ParaAlignement" checked>
+                                        <i class="fas fa-bars"></i>
+                                        Alignement parallèle</label>
+                                    <label class="block"><input class="radio_w2v" type="radio" name="radgroup"
+                                            value="SkipGram_WordByWord">
+                                        <i class='fas fa-language'></i>
+                                        Mot par mot</label>
+                                    <label class="block"><input class="radio_w2v" type="radio" name="radgroup"
+                                            value="SkipGram_RandomShuffle">
+                                        <i class="fas fa-random"></i>
+                                        Insertion aléatoire</label>
+                                </div>
+                            </ul>
+                            <li>
+                                <a href="#cbowsub" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                                    style="background-color:rgb(31, 53, 53);">
+                                    <i class="fas fa-sitemap fa-rotate-180"></i>
+                                    CBOW
+                                </a>
+                            </li>
+                            <ul class="collapse list-unstyled" id="cbowsub" style="background-color:rgb(28, 27, 31);">
+                                <div class="btn-group-vertical we" role="group" aria-label="Basic example"
+                                    style="padding-left: 20px;">
+                                    <label class="block"><input class="radio_w2v" type="radio" name="radgroup"
+                                            value="CBOW_ParaAlignement">
+                                        <i class="fas fa-bars"></i>
+                                        Alignement parallèle</label>
+                                    <label class="block"><input class="radio_w2v" type="radio" name="radgroup"
+                                            value="CBOW_WordByWord">
+                                        <i class='fas fa-language'></i>
+                                        Mot par mot</label>
+                                    <label class="block"><input class="radio_w2v" type="radio" name="radgroup"
+                                            value="CBOW_RandomShuffle">
+                                        <i class="fas fa-random"></i>
+                                        Insertion aléatoire</label>
+                                </div>
+                            </ul>
+
+                        </ul>
+
+
+                    </li>
+
+                    <li>
+                        <a href="#RNNSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <i class="fas fa-code-branch"></i>
+                            Modèle deep learning
+                        </a>
+                        <ul class="collapse list-unstyled" id="RNNSubmenu" style="background-color:rgb(28, 27, 31);">
+                            <div class="btn-group-vertical" role="group" aria-label="Basic example"
+                                style="padding-left: 20px;">
+
+                                <label class="block"><input type="radio" name="radgroup2" value="LSTM" checked
+                                        onclick="hideShowElems('LSTM')">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    LSTM
+                                </label>
+                                <label class="block"><input type="radio" name="radgroup2" value="GRU"
+                                        onclick="hideShowElems('GRU')">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    GRU
+                                </label>
+                                <label class="block"><input type="radio" name="radgroup2" value="BERT"
+                                        onclick="hideShowElems('BERT')">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    BERT
+                                </label>
+                            </div>
+                        </ul>
+                    </li>
+                    <li>
+
+                </ul>
+
+                <ul class="list-unstyled components">
+                    <p style="background-color: seagreen; text-align: center;">Liens externs utiles</p>
+                    </li>
+                    <li>
+                        <a href="#">Lien 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Lien 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Lien 3 </a>
+                    </li>
+                </ul>
+
+                <ul class="list-unstyled CTAs">
+
+                    <li>
+                        <a href="#" class="download">Button 1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="article">Button 2</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content">
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <a href="https://www.cerist.dz/index.php/en/" class="navbar-brand"><img src="{{ url_for('static',filename='logo.png')}}" alt="logo"
+                            width="50"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" data-target="#navbarResponsive">
+                        <span class="navbar-toggle-icon"></span>
+                    </button>
+
+                    <div class="cillapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a href="" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="index6.html" class="nav-link">test</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="" class="nav-link">training</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="card border-0 shadow my-5">
+                    <div class="card-body p-5">
+                        <!----------------------------------------------- Début LSTM---------------------------------------------------------------->
+                        <div id="panel_LSTM">
+                            <h2>Créer un nouveau modèle LSTM</h2>
+                            <hr style="border: 3px  lightgray solid; border-radius: 50%;">
+                            <div class="mb-3 mt-3">
+                                <label for="nodesnumber_lstm" class="form-label">Nombre de couches cachés:</label>
+                                <input type="number" min=1 max=5 class="form-control" id="nodesnumber_lstm"
+                                    onchange="update_lstm_units()" oninput="update_lstm_units()"
+                                    placeholder="Couches Cachés" name="nodesnumber_lstm" required data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Sspécifiez le nombre des couche que vous avez dans votre modèle">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div style="display: none;" id="lstm_nbr_units_0">
+                                <div class="mb-3 mt-3" style="display: none;" id="lstm_nbr_units_1">
+                                    <label for="lstm_nbr_units_1" class="form-label"> Nombre des cellules LSTM dans la
+                                        couche 1:
+                                    </label>
+                                    <input type="number" class="form-control" min=1 max=1000 placeholder="Couche 1"
+                                        id="lstm_nbr_units_1_in" name="lstm_nbr_units_1" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Insérez le nombre de cellules LSTM que vous avez dans votre première couche">
+                                    <div class="valid-feedback">Valide.</div>
+                                    <div class="invalid-feedback">Valeur invalide.</div>
+                                </div>
+                                <div class="mb-3 mt-3" style="display: none;" id="lstm_nbr_units_2">
+                                    <label for="lstm_nbr_units_2" class="form-label"> Nombre des cellules LSTM dans la
+                                        couche
+                                        2:</label>
+                                    <input type="number" class="form-control" min=1 max=1000 placeholder="Couche 2"
+                                        id="lstm_nbr_units_2_in" name="lstm_nbr_units_2" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Insérez le nombre de cellules LSTM que vous avez dans votre deuxième couche">
+                                    <div class="valid-feedback">Valide.</div>
+                                    <div class="invalid-feedback">Valeur invalide.</div>
+                                </div>
+                                <div class="mb-3 mt-3" style="display: none;" id="lstm_nbr_units_3">
+                                    <label for="lstm_nbr_units_3" class="form-label"> Nombre des cellules LSTM dans la
+                                        couche
+                                        3:</label>
+                                    <input type="number" class="form-control" min=1 max=1000 placeholder="Couche 3"
+                                        id="lstm_nbr_units_3_in" name="lstm_nbr_units_3" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Insérez le nombre de cellules LSTM que vous avez dans votre troisième couche">
+                                    <div class="valid-feedback">Valide.</div>
+                                    <div class="invalid-feedback">Valeur invalide.</div>
+                                </div>
+                                <div class="mb-3 mt-3" style="display: none;" id="lstm_nbr_units_4">
+                                    <label for="lstm_nbr_units_4" class="form-label"> Nombre des cellules LSTM dans la
+                                        couche
+                                        4:</label>
+                                    <input type="number" class="form-control" min=1 max=1000 placeholder="Couche 4"
+                                        id="lstm_nbr_units_4_in" name="lstm_nbr_units_4" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Insérez le nombre de cellules LSTM que vous avez dans votre quatrième couche">
+                                    <div class="valid-feedback">Valide.</div>
+                                    <div class="invalid-feedback">Valeur invalide.</div>
+                                </div>
+                                <div class="mb-3 mt-3" style="display: none;" id="lstm_nbr_units_5">
+                                    <label for="lstm_nbr_units_5" class="form-label"> Nombre des cellules LSTM dans la
+                                        couche
+                                        5:</label>
+                                    <input type="number" class="form-control" min=1 max=1000 placeholder="Couche 5"
+                                        id="lstm_nbr_units_5_in" name="lstm_nbr_units_5" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Insérez le nombre de cellules LSTM que vous avez dans votre cinquième couche">
+                                    <div class="valid-feedback">Valide.</div>
+                                    <div class="invalid-feedback">Valeur invalide.</div>
+                                </div>
+                                <hr style="border: 3px  lightgray solid; border-radius: 50%;">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="densesnumber_lstm" class="form-label"> Nuombre des unités dans la couche
+                                    Dense:</label>
+                                <input type="number" min=1 max=1000 class="form-control" id="densesnumber_lstm"
+                                    placeholder="Couche Dense" name="densesnumber_lstm" required data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="<a>Une couche dense est une couche de sortie profondément connectée à sa couche précédente, où les neurones de la couche dense effectuent une multiplication matrice-vecteur qui 'est une procédure où le vecteur ligne de la sortie des couches précédentes est égal au vecteur colonne de la couche dense. </a> <a href='https://analyticsindiamag.com/a-complete-understanding-of-dense-layers-in-neural-networks'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="weights_lstm" class="form-label">Initialisation des poids:</label>
+                                <input type="number" step=0.01 min=0 max=1 class="form-control" id="weights_lstm"
+                                    placeholder="Poids" name="weights_lstm" required data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Les poids qui sont associé à chaque entré de la cellule LSTM dans les réseau">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="dropout_lstm" class="form-label"> Taux de Droupout:</label>
+                                <input type="number" step=0.01 min=0 max=0.95 class="form-control" id="dropout_lstm"
+                                    placeholder="Droupout" name="dropout_lstm" required data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="<a> Le droupout est une technique où les cellules sélectionnés au hasard sont ignorés pendant l'entraînement. Ils sont 'abandonnés' au hasard. Cela signifie que leur contribution à l'activation des neurones est temporairement supprimée lors du backpropagation, et que les mises à jour des poids ne sont pas appliquées au cellules.</a> <a href='https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <hr style="border: 3px  lightgray solid; border-radius: 50%;">
+
+                            <div class="mb-3 mt-3">
+                                <label for="actv_func_lstm" class="form-label"> Fonction d'Activation:</label>
+                                <label class="" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="La fonction d'activation décide si un neurone doit être activé ou non en calculant la somme pondérée et en ajoutant un biais. Le but de la fonction d'activation est d' introduire une non-linéarité dans la sortie d'un neurone.</a> <a href='https://fr.acervolima.com/fonctions-d-activation-dans-les-reseaux-de-neurones/'><u><em>Voir Plus</em></u></a>">
+                                    <strong>ⓘ</strong></label>
+                            </div>
+
+                            <div class="mb-3 mt-3 text-center">
+                                <select class="form-control form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example" name="activ_fun_lstm">
+                                    <h7 class="dropdown-header">Famille de Sigmoid/Logestic</h7>
+                                    <option class="dropdown-item" value="sigmoid" selected> Sigmoid</option>
+                                    <option class="dropdown-item" value="tanh"> Tanh </option>
+                                    <h7 class="dropdown-header">Famille de ReLU</h7>
+                                    <option class="dropdown-item" value="relu"> ReLU</option>
+                                    <option class="dropdown-item" value="selu"> SeLU</option>
+                                    <option class="dropdown-item" value="elu"> ELU </option>
+                                    <h7 class="dropdown-header">Famille de Softmax</h7>
+                                    <option class="dropdown-item" value="softmax"> Softmax</option>
+                                    <option class="dropdown-item" value="softsign"> Softsign </option>
+                                    <option class="dropdown-item" value="softplus"> Softplus </option>
+                                    <option class="dropdown-item" value="exponential"> Exponential </option>
+                                </select>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="optim_func_lstm" class="form-label"> méthodologies de descente de gradient
+                                    (Optimiseur):</label>
+                                <label class="" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Est un algorithme de descente de gradient">
+                                    <strong>ⓘ</strong></label>
+                            </div>
+                            <div class="mb-3 mt-3 text-center">
+                                <select class="form-control form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example" name="optim_fun_lstm">
+                                    <option class="dropdown-item" value="SGD" selected> SGD</option>
+                                    <option class="dropdown-item" value="RMSprop"> RMSprop</option>
+                                    <option class="dropdown-item" value="Adam"> Adam</option>
+                                    <option class="dropdown-item" value="Adadelta"> Adadelta </option>
+                                    <option class="dropdown-item" value="Adagrad"> Adagrad</option>
+                                    <option class="dropdown-item" value="Adamax"> Adamax</option>
+                                    <option class="dropdown-item" value="Nadam"> Nadam</option>
+                                    <option class="dropdown-item" value="Ftrl"> Ftrl</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="Learn_rate_lstm" class="form-label"> Taux d'Apprentissage:</label>
+                                <input type="number" step=0.0001 min=0 max=1 class="form-control" id="Learn_rate_lstm"
+                                    placeholder="Taux d'Apprentissage" name="Learn_rate_lstm" required
+                                    data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Le taux d'apprentissage  joue sur la rapidité de la descente de gradient: un nombre d'itérations plus ou moins important est nécessaire avant que l'algorithme ne converge, c'est-à-dire qu'un apprentissage optimal du réseau soit réalisé.</a> <a href='https://www.cnil.fr/en/node/122384'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="momentum_lstm" class="form-label"> Le Momentum:</label>
+                                <input type="number" step=0.0001 min=0 max=1 class="form-control" id="momentum_lstm"
+                                    placeholder="Momentum" name="momentum_lstm" required data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="On ajoute le momentum à la formule de la rétropropagation pour aider l'algorithme du gradient à sortir de ses minimums locaux .</a> <a href='https://fr.wikipedia.org/wiki/R%C3%A9tropropagation_du_gradient'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="decay_lstm" class="form-label"> Taux de Décroissement (Decay):</label>
+                                <input type="number" step=0.0001 min=0 max=1 class="form-control" id="decay_lstm"
+                                    placeholder="Decay" name="decay_lstm" required data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="Le taux de décroissement qui fait décroiser le taux d'apprentissage en fonction l'epoch courant.</a> <a href='https://machinelearningmastery.com/using-learning-rate-schedules-deep-learning-models-python-keras/'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <hr style="border: 3px  lightgray solid; border-radius: 50%;">
+
+                            <div class="mb-3 mt-3">
+                                <label for="loss_func_lstm" class="form-label"> Fonction de perte:</label>
+                                <label class="" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Une fonction de perte évalue l'écart entre les prédictions réalisées par le réseau de neurones et les valeurs réelles des observations utilisées pendant l'apprentissage. Plus le résultat de cette fonction est minimisé, plus le réseau de neurones est performan.</a> <a href='https://www.editions-eni.fr/open/mediabook.aspx?idR=f6e7a7353a3574180124387fa03fdc1c'><u><em>Voir Plus</em></u></a>">
+                                    <strong>ⓘ</strong></label>
+                            </div>
+                            <div class="mb-3 mt-3 text-center">
+                                <select class="form-control form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example" name="loss_fun_lstm">
+                                    <h7 class="dropdown-header">Regression</h7>
+                                    <option class="dropdown-item" value="Mean Squared Error" selected> Mean Squared
+                                        Error</option>
+                                    <option class="dropdown-item" value="Mean Absolute Error"> Mean Absolute Error
+                                    </option>
+                                    <option class="dropdown-item" value="Mean Squared Logarithmic Error"> Mean Squared
+                                        Logarithmic Error</option>
+                                    <option class="dropdown-item" value="Cosine Similarity Loss"> Cosine Similarity Loss
+                                    </option>
+                                    <option class="dropdown-item" value="LogCosh Loss"> LogCosh Loss</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="nbrepoch_lstm" class="form-label"> Nombre d'Epochs:</label>
+                                <input type="number" min=1 max=10000 class="form-control" id="nbrepoch_lstm"
+                                    placeholder="Epochs" name="nbrepoch_lstm" required data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title=" l'epoch est un terme utilisé pour référer à une itération où le modèle voit tout le training set pour mettre à jour ses coefficients.</a> <a href='https://stanford.edu/~shervine/l/fr/teaching/cs-230/pense-bete-petites-astuces-apprentissage-profond'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="split_ratio_lstm" class="form-label"> Division entre Training set et Testset
+                                    (En Pourcentage %):</label>
+                                <input type="number" min=10 max=100 class="form-control" id="split_ratio_lstm"
+                                    placeholder="Division de dataset" name="split_ratio_lstm" required
+                                    data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Pourcentage de la division du dataset entre les données de apprentissage et les données de test">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="batch_lstm" class="form-label"> Taille du Batch (En Percentage %):</label>
+                                <input type="number" min=1 max=100 class="form-control" id="batch_lstm"
+                                    placeholder="Batch" name="batch_lstm" required data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="Le Batch définit le nombre d'échantillons à traiter avant de mettre à jour les paramètres du modèle interne.</a> <a href='https://machinelearningmastery.com/difference-between-a-batch-and-an-epoch/'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+                        </div>
+
+                        <!----------------------------------------------- Fin LSTM---------------------------------------------------------------->
+                        <!----------------------------------------------- Début GRU---------------------------------------------------------------->
+                        <div id="panel_GRU" style="display: none;">
+                            <h2>Créer un nouveau modèle GRU</h2>
+                            <hr style="border: 3px  lightgray solid; border-radius: 50%;">
+                            <div class="mb-3 mt-3">
+                                <label for="nodesnumber_gru" class="form-label">Nombre de couches cachés:</label>
+                                <input type="number" min=1 max=5 class="form-control" id="nodesnumber_gru"
+                                    onchange="update_gru_units()" oninput="update_gru_units()"
+                                    placeholder="Couches Cachés" name="nodesnumber_gru" data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Sspécifiez le nombre des couche que vous avez dans votre modèle">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div style="display: none;" id="gru_nbr_units_0">
+                                <div class="mb-3 mt-3" style="display: none;" id="gru_nbr_units_1">
+                                    <label for="gru_nbr_units_1" class="form-label"> Nombre des cellules GRU dans la
+                                        couche 1:
+                                    </label>
+                                    <input type="number" class="form-control" min=1 max=1000 placeholder="Couche 1"
+                                        id="gru_nbr_units_1_in" name="gru_nbr_units_1" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Insérez le nombre de cellules GRU que vous avez dans votre première couche">
+                                    <div class="valid-feedback">Valide.</div>
+                                    <div class="invalid-feedback">Valeur invalide.</div>
+                                </div>
+                                <div class="mb-3 mt-3" style="display: none;" id="gru_nbr_units_2">
+                                    <label for="gru_nbr_units_2" class="form-label"> Nombre des cellules GRU dans la
+                                        couche
+                                        2:</label>
+                                    <input type="number" class="form-control" min=1 max=1000 placeholder="Couche 2"
+                                        id="gru_nbr_units_2_in" name="gru_nbr_units_2" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Insérez le nombre de cellules GRU que vous avez dans votre deuxième couche">
+                                    <div class="valid-feedback">Valide.</div>
+                                    <div class="invalid-feedback">Valeur invalide.</div>
+                                </div>
+                                <div class="mb-3 mt-3" style="display: none;" id="gru_nbr_units_3">
+                                    <label for="gru_nbr_units_3" class="form-label"> Nombre des cellules GRU dans la
+                                        couche
+                                        3:</label>
+                                    <input type="number" class="form-control" min=1 max=1000 placeholder="Couche 3"
+                                        id="gru_nbr_units_3_in" name="gru_nbr_units_3" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Insérez le nombre de cellules GRU que vous avez dans votre troisième couche">
+                                    <div class="valid-feedback">Valide.</div>
+                                    <div class="invalid-feedback">Valeur invalide.</div>
+                                </div>
+                                <div class="mb-3 mt-3" style="display: none;" id="gru_nbr_units_4">
+                                    <label for="gru_nbr_units_4" class="form-label"> Nombre des cellules GRU dans la
+                                        couche
+                                        4:</label>
+                                    <input type="number" class="form-control" min=1 max=1000 placeholder="Couche 4"
+                                        id="gru_nbr_units_4_in" name="gru_nbr_units_4" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Insérez le nombre de cellules GRU que vous avez dans votre quatrième couche">
+                                    <div class="valid-feedback">Valide.</div>
+                                    <div class="invalid-feedback">Valeur invalide.</div>
+                                </div>
+                                <div class="mb-3 mt-3" style="display: none;" id="gru_nbr_units_5">
+                                    <label for="gru_nbr_units_5" class="form-label"> Nombre des cellules GRU dans la
+                                        couche
+                                        5:</label>
+                                    <input type="number" class="form-control" min=1 max=1000 placeholder="Couche 5"
+                                        id="gru_nbr_units_5_in" name="gru_nbr_units_5" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Insérez le nombre de cellules GRU que vous avez dans votre cinquième couche">
+                                    <div class="valid-feedback">Valide.</div>
+                                    <div class="invalid-feedback">Valeur invalide.</div>
+                                </div>
+                                <hr style="border: 3px  lightgray solid; border-radius: 50%;">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="densesnumber_gru" class="form-label"> Nuombre des unités dans la couche
+                                    Dense:</label>
+                                <input type="number" min=1 max=1000 class="form-control" id="densesnumber_gru"
+                                    placeholder="Couche Dense" name="densesnumber_gru" data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="<a>Une couche dense est une couche de sortie profondément connectée à sa couche précédente, où les neurones de la couche dense effectuent une multiplication matrice-vecteur qui 'est une procédure où le vecteur ligne de la sortie des couches précédentes est égal au vecteur colonne de la couche dense. </a> <a href='https://analyticsindiamag.com/a-complete-understanding-of-dense-layers-in-neural-networks'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="weights_gru" class="form-label">Initialisation des poids:</label>
+                                <input type="number" step=0.01 min=0 max=1 class="form-control" id="weights_gru"
+                                    placeholder="Poids" name="weights_gru" data-toggle="tooltip" data-placement="top"
+                                    title="Les poids qui sont associé à chaque entré de la cellule GRU dans les réseau">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="dropout_gru" class="form-label"> Taux de Droupout:</label>
+                                <input type="number" step=0.01 min=0 max=0.95 class="form-control" id="dropout_gru"
+                                    placeholder="Droupout" name="dropout_gru" data-toggle="tooltip" data-placement="top"
+                                    data-html="true"
+                                    title="<a> Le droupout est une technique où les cellules sélectionnés au hasard sont ignorés pendant l'entraînement. Ils sont 'abandonnés' au hasard. Cela signifie que leur contribution à l'activation des neurones est temporairement supprimée lors du backpropagation, et que les mises à jour des poids ne sont pas appliquées au cellules.</a> <a href='https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <hr style="border: 3px  lightgray solid; border-radius: 50%;">
+
+                            <div class="mb-3 mt-3">
+                                <label for="actv_func_gru" class="form-label"> Fonction d'Activation:</label>
+                                <label class="" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="La fonction d'activation décide si un neurone doit être activé ou non en calculant la somme pondérée et en ajoutant un biais. Le but de la fonction d'activation est d' introduire une non-linéarité dans la sortie d'un neurone.</a> <a href='https://fr.acervolima.com/fonctions-d-activation-dans-les-reseaux-de-neurones/'><u><em>Voir Plus</em></u></a>">
+                                    <strong>ⓘ</strong></label>
+                            </div>
+                            <div class="mb-3 mt-3 text-center">
+                                <select class="form-control form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example" name="activ_fun_gru">
+                                    <h7 class="dropdown-header">Famille de Sigmoid/Logestic</h7>
+                                    <option class="dropdown-item" value="sigmoid" selected> Sigmoid</option>
+                                    <option class="dropdown-item" value="tanh"> Tanh </option>
+                                    <h7 class="dropdown-header">Famille de ReLU</h7>
+                                    <option class="dropdown-item" value="relu"> ReLU</option>
+                                    <option class="dropdown-item" value="selu"> SeLU</option>
+                                    <option class="dropdown-item" value="elu"> ELU </option>
+                                    <h7 class="dropdown-header">Famille de Softmax</h7>
+                                    <option class="dropdown-item" value="softmax"> Softmax</option>
+                                    <option class="dropdown-item" value="softsign"> Softsign </option>
+                                    <option class="dropdown-item" value="softplus"> Softplus </option>
+                                    <option class="dropdown-item" value="exponential"> Exponential </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="Learn_rate_gru" class="form-label"> Taux d'Apprentissage:</label>
+                                <input type="number" step=0.0001 min=0 max=1 class="form-control" id="Learn_rate_gru"
+                                    placeholder="Taux d'Apprentissage" name="Learn_rate_gru" data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="Le taux d'apprentissage  joue sur la rapidité de la descente de gradient: un nombre d'itérations plus ou moins important est nécessaire avant que l'algorithme ne converge, c'est-à-dire qu'un apprentissage optimal du réseau soit réalisé.</a> <a href='https://www.cnil.fr/en/node/122384'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="momentum_gru" class="form-label"> Le Momentum:</label>
+                                <input type="number" step=0.0001 min=0 max=1 class="form-control" id="momentum_gru"
+                                    placeholder="Momentum" name="momentum_gru" data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="On ajoute le momentum à la formule de la rétropropagation pour aider l'algorithme du gradient à sortir de ses minimums locaux .</a> <a href='https://fr.wikipedia.org/wiki/R%C3%A9tropropagation_du_gradient'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="decay_gru" class="form-label"> Taux de Décroissement (Decay):</label>
+                                <input type="number" step=0.0001 min=0 max=1 class="form-control" id="decay_gru"
+                                    placeholder="Decay" name="decay_gru" data-toggle="tooltip" data-placement="top"
+                                    data-html="true"
+                                    title="Le taux de décroissement qui fait décroiser le taux d'apprentissage en fonction l'epoch courant.</a> <a href='https://machinelearningmastery.com/using-learning-rate-schedules-deep-learning-models-python-keras/'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <hr style="border: 3px  lightgray solid; border-radius: 50%;">
+
+                            <div class="mb-3 mt-3">
+                                <label for="loss_func_gru" class="form-label"> Fonction de perte:</label>
+                                <label class="" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Une fonction de perte évalue l'écart entre les prédictions réalisées par le réseau de neurones et les valeurs réelles des observations utilisées pendant l'apprentissage. Plus le résultat de cette fonction est minimisé, plus le réseau de neurones est performan.</a> <a href='https://www.editions-eni.fr/open/mediabook.aspx?idR=f6e7a7353a3574180124387fa03fdc1c'><u><em>Voir Plus</em></u></a>">
+                                    <strong>ⓘ</strong></label>
+                            </div>
+                            <div class="mb-3 mt-3 text-center">
+                                <select class="form-control form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example" name="loss_fun_gru">
+                                    <h7 class="dropdown-header">Regression</h7>
+                                    <option class="dropdown-item" value="Mean Squared Error" selected> Mean Squared
+                                        Error</option>
+                                    <option class="dropdown-item" value="Mean Absolute Error"> Mean Absolute Error
+                                    </option>
+                                    <option class="dropdown-item" value="Mean Squared Logarithmic Error"> Mean Squared
+                                        Logarithmic Error</option>
+                                    <option class="dropdown-item" value="Cosine Similarity Loss"> Cosine Similarity Loss
+                                    </option>
+                                    <option class="dropdown-item" value="LogCosh Loss"> LogCosh Loss</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="optim_func_lstm" class="form-label"> méthodologies de descente de gradient
+                                    (Optimiseur):</label>
+                                <label class="" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Est un algorithme de descente de gradient">
+                                    <strong>ⓘ</strong></label>
+                            </div>
+                            <div class="mb-3 mt-3 text-center">
+                                <select class="form-control form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example" name="optim_fun_lstm">
+                                    <option class="dropdown-item" value="SGD" selected> SGD</option>
+                                    <option class="dropdown-item" value="RMSprop"> RMSprop</option>
+                                    <option class="dropdown-item" value="Adam"> Adam</option>
+                                    <option class="dropdown-item" value="Adadelta"> Adadelta </option>
+                                    <option class="dropdown-item" value="Adagrad"> Adagrad</option>
+                                    <option class="dropdown-item" value="Adamax"> Adamax</option>
+                                    <option class="dropdown-item" value="Nadam"> Nadam</option>
+                                    <option class="dropdown-item" value="Ftrl"> Ftrl</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="nbrepoch_gru" class="form-label"> Nombre d'Epochs:</label>
+                                <input type="number" min=1 max=10000 class="form-control" id="nbrepoch_gru"
+                                    placeholder="Epochs" name="nbrepoch_gru" data-toggle="tooltip" data-placement="top"
+                                    data-html="true"
+                                    title=" l'epoch est un terme utilisé pour référer à une itération où le modèle voit tout le training set pour mettre à jour ses coefficients.</a> <a href='https://stanford.edu/~shervine/l/fr/teaching/cs-230/pense-bete-petites-astuces-apprentissage-profond'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="split_ratio_rgu" class="form-label"> Division entre Training set et Testset
+                                    (En Pourcentage %):</label>
+                                <input type="number" min=10 max=100 class="form-control" id="split_ratio_rgu"
+                                    placeholder="Division de dataset" name="split_ratio_rgu" data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="Pourcentage de la division du dataset entre les données de apprentissage et les données de test">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="batch_gru" class="form-label"> Taille du Batch (En Percentage %):</label>
+                                <input type="number" min=1 max=100 class="form-control" id="batch_gru"
+                                    placeholder="Batch" name="batch_gru" data-toggle="tooltip" data-placement="top"
+                                    data-html="true"
+                                    title="Le Batch définit le nombre d'échantillons à traiter avant de mettre à jour les paramètres du modèle interne.</a> <a href='https://machinelearningmastery.com/difference-between-a-batch-and-an-epoch/'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+                        </div>
+                        <!----------------------------------------------- FIN GRU---------------------------------------------------------------->
+                        <!----------------------------------------------- Début BERT---------------------------------------------------------------->
+
+                        <div id="panel_BERT" style="display: none;">
+                            <h2>Créer un nouveau modèle BERT</h2>
+
+                            <div class="mb-3 mt-3">
+                                <label for="word_embeddings_bert" class="form-label"> Word embeddings:</label>
+                                <input type="number" disabled class="form-control" id="word_embeddings_bert"
+                                    placeholder="BERT Utilise ses propre embeddings (sentence2vec) qui sont téléchargés"
+                                    name="word_embeddings_bert">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="embeddings_lenth_bert" class="form-label"> Taille de vecteur embeddings
+                                    (100-300):</label>
+                                <input type="number" min=1 max=10000 class="form-control" id="embeddings_lenth_bert"
+                                    placeholder="Taille d'embeddings" name="embeddings_lenth_bert" data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title=" nombre d'element dans le vecteur embeddings utilisé par bert">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="actv_func_bert" class="form-label"> Fonction d'Activation:</label>
+                                <label class="" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="La fonction d'activation décide si un neurone doit être activé ou non en calculant la somme pondérée et en ajoutant un biais. Le but de la fonction d'activation est d' introduire une non-linéarité dans la sortie d'un neurone.</a> <a href='https://fr.acervolima.com/fonctions-d-activation-dans-les-reseaux-de-neurones/'><u><em>Voir Plus</em></u></a>">
+                                    <strong>ⓘ</strong></label>
+                            </div>
+
+                            <div class="mb-3 mt-3 text-center">
+                                <select class="form-control form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example" name="actv_func_bert">
+                                    <option class="dropdown-item" value="ReLU" selected> ReLU</option>
+                                    <option class="dropdown-item" value="LeakyReLU"> Leaky ReLU </option>
+                                    <option class="dropdown-item" value="Sigmoid"> Sigmoid</option>
+                                    <option class="dropdown-item" value="Tanh"> Tanh</option>
+                                    <option class="dropdown-item" value="Softmax"> Softmax </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="loss_func_bert" class="form-label"> Fonction de perte:</label>
+                                <label class="" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Une fonction de perte évalue l'écart entre les prédictions réalisées par le réseau de neurones et les valeurs réelles des observations utilisées pendant l'apprentissage. Plus le résultat de cette fonction est minimisé, plus le réseau de neurones est performan.</a> <a href='https://www.editions-eni.fr/open/mediabook.aspx?idR=f6e7a7353a3574180124387fa03fdc1c'><u><em>Voir Plus</em></u></a>">
+                                    <strong>ⓘ</strong></label>
+                            </div>
+                            <div class="mb-3 mt-3 text-center">
+                                <select class="form-control form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example" name="loss_func_bert">
+                                    <h7 class="dropdown-header">Regression</h7>
+                                    <option class="dropdown-item" value="ContrastiveLoss" selected> Contrastive Loss
+                                    </option>
+                                    <option class="dropdown-item" value="OnlineContrastiveLoss"> Online Contrastive Loss
+                                    </option>
+                                    <option class="dropdown-item" value="CosineSimilarityLoss"> Cosine Similarity Loss
+                                    </option>
+                                    <option class="dropdown-item" value="MultipleNegativesRankingLoss"> Multiple
+                                        Negatives Ranking Loss</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="nbrepoch_bert" class="form-label"> Nombre d'Epochs:</label>
+                                <input type="number" min=1 max=10000 class="form-control" id="nbrepoch_bert"
+                                    placeholder="Epochs" name="nbrepoch_bert" data-toggle="tooltip" data-placement="top"
+                                    data-html="true"
+                                    title=" l'epoch est un terme utilisé pour référer à une itération où le modèle voit tout le training set pour mettre à jour ses coefficients.</a> <a href='https://stanford.edu/~shervine/l/fr/teaching/cs-230/pense-bete-petites-astuces-apprentissage-profond'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="split_ratio_bert" class="form-label"> Division entre Training set et Testset
+                                    (En Pourcentage %):</label>
+                                <input type="number" min=10 max=100 class="form-control" id="split_ratio_bert"
+                                    placeholder="Division de dataset" name="split_ratio_bert" data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="Pourcentage de la division du dataset entre les données de apprentissage et les données de test">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="batch_bert" class="form-label"> Taille du Batch (En Percentage %):</label>
+                                <input type="number" min=1 max=100 class="form-control" id="batch_bert"
+                                    placeholder="Batch" name="batch_bert" data-toggle="tooltip" data-placement="top"
+                                    data-html="true"
+                                    title="Le Batch définit le nombre d'échantillons à traiter avant de mettre à jour les paramètres du modèle interne.</a> <a href='https://machinelearningmastery.com/difference-between-a-batch-and-an-epoch/'><u><em>Voir Plus</em></u></a>">
+                                <div class="valid-feedback">Valide.</div>
+                                <div class="invalid-feedback">Valeur invalide.</div>
+                            </div>
+
+                        </div>
+                        <!----------------------------------------------- Fin BERT ---------------------------------------------------------------->
+                        <hr style="border: 3px  lightgray solid; border-radius: 50%;">
+                        <input type="submit" class="btn btn-outline-success btn-lg" value="Créer Votre Modèle"
+                            id="submit" name="submit" onclick="overlayOn()">
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div id="overlay">
+            <div id="textwait">veuillez patienter</div>
+            <div id="loop"><i class="fa fa-spinner fa-spin" style="font-size:100px"></i></div>
+    </form>
+
+
+
+    <!-- Custom Scripts -->
+    <script type="text/javascript">
+
+
+        // J-Querry
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                $(this).toggleClass('active');
+            });
+        });
+
+        $(function () {
+            $(".dropdown-menu a").click(function () {
+                $(this).closest('.btn-group').find(".btn:first-child").text($(this).text());
+                $(this).closest('.btn-group').find(".btn:first-child").val($(this).text());
+            });
+        });
+
+
+        // Vanilla JS
+        function overlayOn() {
+            document.getElementById("overlay").style.display = "block";
+        }
+        function update_lstm_units() {
+            document.getElementById("lstm_nbr_units_0").style.display = "none";
+            document.getElementById("lstm_nbr_units_1").style.display = "none";
+            document.getElementById("lstm_nbr_units_2").style.display = "none";
+            document.getElementById("lstm_nbr_units_3").style.display = "none";
+            document.getElementById("lstm_nbr_units_4").style.display = "none";
+            document.getElementById("lstm_nbr_units_5").style.display = "none";
+            document.getElementById("lstm_nbr_units_1_in").required = false;
+            document.getElementById("lstm_nbr_units_2_in").required = false;
+            document.getElementById("lstm_nbr_units_3_in").required = false;
+            document.getElementById("lstm_nbr_units_4_in").required = false;
+            document.getElementById("lstm_nbr_units_5_in").required = false;
+            var x = document.getElementById("nodesnumber_lstm").value;
+            if (x < 0 || x > 5)
+                return;
+            if (x > 0) {
+                document.getElementById("lstm_nbr_units_0").style.display = "Block";
+                document.getElementById("lstm_nbr_units_1").style.display = "Block";
+                document.getElementById("lstm_nbr_units_1_in").required = true;
+            }
+            if (x > 1) {
+                document.getElementById("lstm_nbr_units_2").style.display = "Block";
+                document.getElementById("lstm_nbr_units_2_in").required = true;
+            }
+            if (x > 2) {
+                document.getElementById("lstm_nbr_units_3").style.display = "Block";
+                document.getElementById("lstm_nbr_units_3_in").required = true;
+            }
+            if (x > 3) {
+                document.getElementById("lstm_nbr_units_4").style.display = "Block";
+                document.getElementById("lstm_nbr_units_4_in").required = true;
+            }
+            if (x > 4) {
+                document.getElementById("lstm_nbr_units_5").style.display = "Block";
+                document.getElementById("lstm_nbr_units_5_in").required = true;
+            }
+        }
+
+        function update_gru_units() {
+            document.getElementById("gru_nbr_units_0").style.display = "none";
+            document.getElementById("gru_nbr_units_1").style.display = "none";
+            document.getElementById("gru_nbr_units_2").style.display = "none";
+            document.getElementById("gru_nbr_units_3").style.display = "none";
+            document.getElementById("gru_nbr_units_4").style.display = "none";
+            document.getElementById("gru_nbr_units_5").style.display = "none";
+            document.getElementById("gru_nbr_units_1_in").required = false;
+            document.getElementById("gru_nbr_units_2_in").required = false;
+            document.getElementById("gru_nbr_units_3_in").required = false;
+            document.getElementById("gru_nbr_units_4_in").required = false;
+            document.getElementById("gru_nbr_units_5_in").required = false;
+            var x = document.getElementById("nodesnumber_gru").value;
+            if (x < 0 || x > 5)
+                return;
+            if (x > 0) {
+                document.getElementById("gru_nbr_units_0").style.display = "Block";
+                document.getElementById("gru_nbr_units_1").style.display = "Block";
+                document.getElementById("gru_nbr_units_1_in").required = true;
+            }
+            if (x > 1) {
+                document.getElementById("gru_nbr_units_2").style.display = "Block";
+                document.getElementById("gru_nbr_units_2_in").required = true;
+            }
+            if (x > 2) {
+                document.getElementById("gru_nbr_units_3").style.display = "Block";
+                document.getElementById("gru_nbr_units_3_in").required = true;
+            }
+            if (x > 3) {
+                document.getElementById("gru_nbr_units_4").style.display = "Block";
+                document.getElementById("gru_nbr_units_4_in").required = true;
+            }
+            if (x > 4) {
+                document.getElementById("gru_nbr_units_5").style.display = "Block";
+                document.getElementById("gru_nbr_units_5_in").required = true;
+            }
+        }
+
+        function set_lstm_required(val) {
+            document.getElementById("nodesnumber_lstm").required = val;
+            document.getElementById("densesnumber_lstm").required = val;
+            document.getElementById("weights_lstm").required = val;
+            document.getElementById("dropout_lstm").required = val;
+            document.getElementById("Learn_rate_lstm").required = val;
+            document.getElementById("momentum_lstm").required = val;
+            document.getElementById("decay_lstm").required = val;
+            document.getElementById("nbrepoch_lstm").required = val;
+            document.getElementById("batch_lstm").required = val;
+            document.getElementById("split_ratio_lstm").required = val;
+            return;
+        }
+
+        function set_gru_required(val) {
+            document.getElementById("nodesnumber_gru").required = val;
+            document.getElementById("densesnumber_gru").required = val;
+            document.getElementById("weights_gru").required = val;
+            document.getElementById("dropout_gru").required = val;
+            document.getElementById("Learn_rate_gru").required = val;
+            document.getElementById("momentum_gru").required = val;
+            document.getElementById("decay_gru").required = val;
+            document.getElementById("nbrepoch_gru").required = val;
+            document.getElementById("batch_gru").required = val;
+            document.getElementById("split_ratio_gru").required = val;
+            return;
+        }
+
+
+        function set_bert_required(val) {
+            document.getElementById("batch_bert").required = val;
+            document.getElementById("split_ratio_bert").required = val;
+            document.getElementById("nbrepoch_bert").required = val;
+            document.getElementById("embeddings_lenth_bert").required = val;
+            return;
+        }
+        function set_required(str) {
+            if (str == 'BERT') {
+                set_lstm_required(false);
+                set_gru_required(false);
+                set_bert_required(true);
+            }
+            if (str == 'GRU') {
+                set_lstm_required(false);
+                set_gru_required(true);
+                set_bert_required(false);
+            }
+            if (str == 'LSTM') {
+                set_lstm_required(true);
+                set_gru_required(false);
+                set_bert_required(false);
+            }
+
+        }
+
+        function hideShowElems(str) {
+            var x = document.getElementById("panel_LSTM");
+            var y = document.getElementById("panel_GRU");
+            var z = document.getElementById("panel_BERT");
+            if (str == 'BERT') {
+                x.style.display = "none";
+                y.style.display = "none";
+                z.style.display = "block";
+                var t = document.getElementsByClassName("radio_w2v");
+                var i;
+                for (i = 0; i < t.length; i++) {
+                    t[i].disabled = true;
+                }
+
+            }
+            if (str == 'GRU') {
+                x.style.display = "none";
+                y.style.display = "block";
+                z.style.display = "none";
+                var t = document.getElementsByClassName("radio_w2v");
+                var i;
+                for (i = 0; i < t.length; i++) {
+                    t[i].disabled = false;
+                }
+            }
+            if (str == 'LSTM') {
+                x.style.display = "block";
+                y.style.display = "none";
+                z.style.display = "none";
+                var t = document.getElementsByClassName("radio_w2v");
+                var i;
+                for (i = 0; i < t.length; i++) {
+                    t[i].disabled = false;
+                }
+            }
+            set_required(str)
+        }
+
+    </script>
+</body>
+
+</html>
